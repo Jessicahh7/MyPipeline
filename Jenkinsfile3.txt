@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'create'
+                echo 'Starting building, your current build number is ${BUILD_NUMBER}'
+                echo 'The name of the project of this build is ${JOB_NAME}'
+            }
+          stage('Test') {
+            steps {
+                sh 'checking'
+                echo 'This is the unique number that identifies the current executor that’s carrying out this build: ${EXECUTOR_NUMBER}'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'deploy'
+                echo 'Deploying'
+                echo 'Your full URL of this job is ${JOB_URL}'
+            }
+        }
+    }
+}
